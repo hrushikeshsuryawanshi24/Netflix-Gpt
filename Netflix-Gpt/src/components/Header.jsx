@@ -1,14 +1,30 @@
-import React from "react";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { Logo } from "./constant";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    signOut(auth);
+  };
+
   return (
-    <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent z-20 flex items-center px-10">
+    <header className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent z-20 flex items-center justify-between px-10">
       <img
         className="w-36"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src={Logo}
         alt="Netflix Logo"
       />
-    </div>
+
+      <button
+        className="text-sm font-medium text-white border border-gray-500 px-4 py-1.5 rounded"
+        onClick={handleSignOut}
+      >
+        Sign Out
+      </button>
+    </header>
   );
 };
 

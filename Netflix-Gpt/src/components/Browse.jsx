@@ -1,11 +1,23 @@
-import React from 'react'
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import usePopularMovies from "../hooks/usePopularMovies";
+import useTopRatedMovies from "../hooks/useTopRatedMovies";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
+
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
-  return (
-    <div>
-      <h1>Browse</h1>
-    </div>
-  )
-}
+  useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();     // 👈 MISSING BEFORE
+  useUpcomingMovies();     // 👈 MISSING BEFORE
 
-export default Browse
+  return (
+    <div className="bg-black">
+      <MainContainer />
+      <SecondaryContainer />
+    </div>
+  );
+};
+
+export default Browse;
